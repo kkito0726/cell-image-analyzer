@@ -1,8 +1,11 @@
 from dataclasses import dataclass
+
 import cv2
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+
 from pyCell.domain.filter.sobel import Sobel
+
 
 @dataclass(frozen=True)
 class StructureTensor:
@@ -12,11 +15,11 @@ class StructureTensor:
 
     @property
     def theta(self):
-        return 0.5 * np.arctan2(2*self.jxy, self.jxx - self.jyy)
+        return 0.5 * np.arctan2(2 * self.jxy, self.jxx - self.jyy)
 
     @property
     def theta_corr(self):
-        return (self.theta - np.pi/2) % np.pi   # [0, π)
+        return (self.theta - np.pi / 2) % np.pi  # [0, π)
 
     @property
     def orientation_order_parameter(self) -> np.ndarray:
@@ -27,11 +30,9 @@ class StructureTensor:
         - S ≈ 0 : ランダム \n
         """
         mean_theta = 0.5 * np.arctan2(
-            np.mean(np.sin(2 * self.theta_corr)),
-            np.mean(np.cos(2 * self.theta_corr))
+            np.mean(np.sin(2 * self.theta_corr)), np.mean(np.cos(2 * self.theta_corr))
         )
-        return np.mean(np.cos(2*(self.theta_corr - mean_theta)))
-
+        return np.mean(np.cos(2 * (self.theta_corr - mean_theta)))
 
     def rose_hist(self, bins=36, theta_min=0, theta_max=180):
         plt.figure(figsize=(5, 5))
@@ -44,9 +45,10 @@ class StructureTensor:
         plt.show()
         return ax
 
+
 def calc_structure_tensor(sobel: Sobel) -> StructureTensor:
     return StructureTensor(
         cv2.GaussianBlur(sobel.ix * sobel.ix, (15, 15), 0),
         cv2.GaussianBlur(sobel.iy * sobel.iy, (15, 15), 0),
-        cv2.GaussianBlur(sobel.ix * sobel.iy, (15, 15), 0)
+        cv2.GaussianBlur(sobel.ix * sobel.iy, (15, 15), 0),
     )

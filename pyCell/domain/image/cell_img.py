@@ -1,8 +1,10 @@
 from dataclasses import dataclass
-import matplotlib.pyplot as plt
 
 import cv2
+import matplotlib.pyplot as plt
+
 from pyCell.domain.image.image_path import ImagePath
+
 
 @dataclass(frozen=True)
 class CellImage:
@@ -15,7 +17,6 @@ class CellImage:
         plt.axis("off")
         plt.show()
 
-
     def clahe(self, clipLimit=2.0, tileGridSize=(8, 8)):
         clahe = cv2.createCLAHE(clipLimit=clipLimit, tileGridSize=tileGridSize)
         img_eq = clahe.apply(self.img)
@@ -26,6 +27,7 @@ class CellImage:
         img_blur = cv2.GaussianBlur(self.img, ksize=ksize, sigmaX=sigmaX)
 
         return CellImage(self.img_path, img_blur)
+
 
 def read_img(img_path: str) -> CellImage:
     img_path = ImagePath(img_path)
