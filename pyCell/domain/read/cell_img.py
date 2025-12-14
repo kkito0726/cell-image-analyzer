@@ -18,6 +18,27 @@ class CellImage:
         plt.axis("off")
         plt.show()
 
+    def save(self, file_path: str):
+        """
+        Saves the current image data to a file.
+
+        Args:
+            file_path: The path where the image will be saved.
+                       The file extension must be a valid image format
+                       (e.g., .png, .jpg, .bmp).
+        """
+        # Prevent overwriting the source file
+        if os.path.abspath(file_path) == os.path.abspath(self.img_path.value):
+            raise ValueError(
+                "読み込み中の画像ファイルとファイルパスが一致しています"
+            )
+        
+        # Validate the output path using ImagePath
+        output_path = ImagePath(file_path)
+        
+        # Save the image using OpenCV
+        cv2.imwrite(output_path.value, self.img)
+
     def clahe(self, clipLimit=2.0, tileGridSize=(8, 8)):
         clahe = cv2.createCLAHE(clipLimit=clipLimit, tileGridSize=tileGridSize)
         img_eq = clahe.apply(self.img)
