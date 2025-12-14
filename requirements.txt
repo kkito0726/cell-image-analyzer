@@ -3,3 +3,6 @@ numpy
 opencv-python
 openpyxl
 pandas
+pytest
+pytest-mock
+numpy
