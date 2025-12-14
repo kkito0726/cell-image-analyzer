@@ -13,7 +13,7 @@ class CellImage:
 
     def show(self):
         plt.figure()
-        plt.imshow(self.img)
+        plt.imshow(self.img, cmap="gray")
         plt.axis("off")
         plt.show()
 
@@ -27,6 +27,11 @@ class CellImage:
         img_blur = cv2.GaussianBlur(self.img, ksize=ksize, sigmaX=sigmaX)
 
         return CellImage(self.img_path, img_blur)
+
+    def sobel(self, ddepth: int, dx: int, dy: int, ksize=3):
+        return CellImage(
+            self.img_path, cv2.Sobel(self.img, ddepth, dx=dx, dy=dy, ksize=ksize)
+        )
 
 
 def read_img(img_path: str) -> CellImage:
