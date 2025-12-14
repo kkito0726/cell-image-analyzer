@@ -1,3 +1,4 @@
+import os
 from dataclasses import dataclass
 
 import cv2
@@ -35,7 +36,12 @@ class CellImage:
 
 
 def read_img(img_path: str) -> CellImage:
-    img_path = ImagePath(img_path)
-    img = cv2.imread(img_path.value, cv2.IMREAD_GRAYSCALE)
+    image_path = ImagePath(img_path)
+    if not os.path.exists(image_path.value):
+        raise FileNotFoundError(f"ファイルが見つかりません: {image_path.value}")
 
-    return CellImage(img_path, img)
+    img = cv2.imread(image_path.value, cv2.IMREAD_GRAYSCALE)
+    if img is None:
+        raise ValueError(f"画像の読み込みに失敗しました: {image_path.value}")
+
+    return CellImage(image_path, img)
