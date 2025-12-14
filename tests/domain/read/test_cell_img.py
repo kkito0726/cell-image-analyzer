@@ -1,8 +1,8 @@
+import cv2
 import numpy as np
 import pytest
-import cv2
 
-from pyCell.domain.read.cell_img import read_img, CellImage
+from pyCell.domain.read.cell_img import CellImage, read_img
 from pyCell.domain.read.image_path import ImagePath
 
 

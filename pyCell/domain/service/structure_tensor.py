@@ -4,7 +4,6 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.axes import Axes
-from scipy.ndimage import sobel
 
 from pyCell.domain.service.sobel_xy import SobelXY
 
@@ -30,7 +29,9 @@ class StructureTensor:
         return (self.theta - np.pi / 2) % np.pi  # [0, π)
 
     @property
-    def orientation_order_parameter(self) -> float: # Return type changed to float as it's a single scalar
+    def orientation_order_parameter(
+        self,
+    ) -> float:  # Return type changed to float as it's a single scalar
         """
         配向秩序パラメータ（Orientation Order Parameter）\n
         S = √(<cos(2θ)>^2 + <sin(2θ)>^2)\n

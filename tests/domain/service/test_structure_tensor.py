@@ -1,6 +1,7 @@
+import numpy as np
+
 from pyCell.domain.service.sobel_xy import sobel_xy_factory
 from pyCell.domain.service.structure_tensor import structure_tensor_factory
-import numpy as np
 
 
 def test_structure_tensor_vertical_edge(vertical_edge_image):

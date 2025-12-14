@@ -1,5 +1,6 @@
-from pyCell.domain.read.image_path import ImagePath
 import pytest
+
+from pyCell.domain.read.image_path import ImagePath
 
 
 def test_image_path_success():

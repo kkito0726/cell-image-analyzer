@@ -1,5 +1,6 @@
 import numpy as np
 import pytest
+
 from pyCell.domain.read.cell_img import CellImage
 from pyCell.domain.read.image_path import ImagePath
 

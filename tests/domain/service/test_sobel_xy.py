@@ -1,5 +1,6 @@
-from pyCell.domain.service.sobel_xy import sobel_xy_factory
 import numpy as np
+
+from pyCell.domain.service.sobel_xy import sobel_xy_factory
 
 
 def test_sobel_xy_factory_vertical_edge(vertical_edge_image):
