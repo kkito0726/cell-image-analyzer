@@ -1,5 +1,15 @@
 # 顕微鏡画像解析ライブラリ
 
+## Install
+```bash
+pip install git+https://github.com/kkito0726/cell-image-analyzer.git
+```
+
+## Update
+```bash
+pip uninstall pyCell -y
+pip install git+https://github.com/kkito0726/cell-image-analyzer.git
+```
 
 ## 構造テンソルによる配向解析 (Structure Tensor Analysis) 
 
