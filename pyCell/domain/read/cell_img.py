@@ -29,7 +29,7 @@ class CellImage:
 
         return CellImage(self.img_path, img_blur)
 
-    def sobel(self, ddepth: int, dx: int, dy: int, ksize=3):
+    def sobel(self, dx: int, dy: int, ddepth=cv2.CV_64F, ksize=3):
         return CellImage(
             self.img_path, cv2.Sobel(self.img, ddepth, dx=dx, dy=dy, ksize=ksize)
         )
