@@ -3,7 +3,7 @@ from dataclasses import dataclass
 import cv2
 import matplotlib.pyplot as plt
 
-from pyCell.domain.image.image_path import ImagePath
+from pyCell.domain.read.image_path import ImagePath
 
 
 @dataclass(frozen=True)

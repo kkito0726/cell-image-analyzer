@@ -6,7 +6,7 @@ import numpy as np
 from matplotlib.axes import Axes
 from scipy.ndimage import sobel
 
-from pyCell.domain.filter.sobel_xy import SobelXY
+from pyCell.domain.service.sobel_xy import SobelXY
 
 
 @dataclass(frozen=True)
@@ -67,7 +67,7 @@ class StructureTensor:
         return ax
 
 
-def calc_structure_tensor(sobelXY: SobelXY, ksize=15, sigmaX=0) -> StructureTensor:
+def structure_tensor_factory(sobelXY: SobelXY, ksize=15, sigmaX=0) -> StructureTensor:
     return StructureTensor(
         cv2.GaussianBlur(sobelXY.ix * sobelXY.ix, (ksize, ksize), sigmaX),
         cv2.GaussianBlur(sobelXY.iy * sobelXY.iy, (ksize, ksize), sigmaX),
