@@ -13,6 +13,6 @@ class SobelXY:
 
 def sobel_xy_factory(cell_img: CellImage, ddepth=cv2.CV_64F, ksize=3) -> SobelXY:
     return SobelXY(
-        cell_img.sobel(ddepth, 1, 0, ksize=ksize).img,
-        cell_img.sobel(ddepth, 0, 1, ksize=ksize).img,
+        cell_img.sobel(1, 0, ddepth, ksize=ksize).img,
+        cell_img.sobel(0, 1, ddepth, ksize=ksize).img,
     )
